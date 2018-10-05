@@ -37,6 +37,7 @@ You can find the most recent version of this guide [here](https://github.com/fac
 - [Adding Bootstrap](#adding-bootstrap)
   - [Using a Custom Theme](#using-a-custom-theme)
 - [Adding Flow](#adding-flow)
+- [Adding TypeScript](#adding-typescript)
 - [Adding Relay](#adding-relay)
 - [Adding a Router](#adding-a-router)
 - [Adding Custom Environment Variables](#adding-custom-environment-variables)
@@ -342,7 +343,7 @@ Next we add a 'lint-staged' field to the `package.json`, for example:
     // ...
   },
 + "lint-staged": {
-+   "src/**/*.{js,jsx,json,css}": [
++   "src/**/*.{js,jsx,ts,tsx,json,css,scss,html,md}": [
 +     "prettier --single-quote --write",
 +     "git add"
 +   ]
@@ -350,7 +351,7 @@ Next we add a 'lint-staged' field to the `package.json`, for example:
   "scripts": {
 ```
 
-Now, whenever you make a commit, Prettier will format the changed files automatically. You can also run `./node_modules/.bin/prettier --single-quote --write "src/**/*.{js,jsx}"` to format your entire project for the first time.
+Now, whenever you make a commit, Prettier will format the changed files automatically. You can also run `./node_modules/.bin/prettier --single-quote --write "src/**/*.{js,jsx,ts,tsx,json,css,scss,html,md}"` to format your entire project for the first time.
 
 Next you might want to integrate Prettier in your favorite editor. Read the section on [Editor Integration](https://prettier.io/docs/en/editors.html) on the Prettier GitHub page.
 
@@ -851,6 +852,48 @@ You can optionally use an IDE like [Nuclide](https://nuclide.io/docs/languages/f
 In the future we plan to integrate it into Create React App even more closely.
 
 To learn more about Flow, check out [its documentation](https://flow.org/).
+
+## Adding TypeScript
+
+TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.
+
+Recent versions of [TypeScript](https://www.typescriptlang.org/) work with Create React App projects out of the box thanks to Babel 7. Beware that Babel 7 TypeScript does not allow some features of TypeScript such as constant enum and namespaces.
+
+To add TypeScript to a Create React App project, follow these steps:
+
+1. Run `npm install @types/react @types/react-dom @types/jest` (or `yarn add @types/react @types/react-dom @types/jest`).
+2. Rename the `.js` files you want to convert. Use `.tsx` if they use JSX or `.ts` if not (e.g. `git mv src/index.js src/index.tsx`).
+
+3. Create a [`tsconfig.json` file](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) at the root directory with the following content:
+
+   ```json
+   {
+     "compilerOptions": {
+       "target": "es5",
+       "module": "esnext",
+       "moduleResolution": "node",
+       "lib": ["esnext", "dom", "dom.iterable"],
+       "allowJs": true,
+       "allowSyntheticDefaultImports": true,
+       "esModuleInterop": true,
+       "isolatedModules": true,
+       "jsx": "preserve",
+       "noEmit": true,
+       "skipLibCheck": true,
+       "strict": true
+     }
+   }
+   ```
+
+   _Note: `tsconfig.prod.json` is also supported._
+
+4. Copy [loaders.d.ts](./loaders.d.ts) from the template to your root directory if you don't have it.
+
+Type errors will show up in the console.
+
+We recommend using [VSCode](https://code.visualstudio.com/) for a better integrated experience.
+
+To learn more about TypeScript, check out [its documentation](https://www.typescriptlang.org/).
 
 ## Adding Relay
 
@@ -1575,7 +1618,7 @@ Example package.json:
   "name": "your-package",
   "jest": {
     "collectCoverageFrom": [
-      "src/**/*.{js,jsx}",
+      "src/**/*.{js,jsx,ts,tsx}",
       "!<rootDir>/node_modules/",
       "!<rootDir>/path/to/dir/"
     ],

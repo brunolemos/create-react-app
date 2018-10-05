@@ -12,6 +12,15 @@ async function bootstrap({ directory, template }) {
       fs.copy(path.join(template, file), path.join(directory, file))
     )
   );
+  // optional files to copy
+  await Promise.all(
+    ['.flowconfig', 'tsconfig.json'].map(async file => {
+      const exists = await fs.pathExists(path.join(template, file));
+      if (!exists) return;
+
+      return fs.copy(path.join(template, file), path.join(directory, file));
+    })
+  );
   if (shouldInstallScripts) {
     const packageJson = fs.readJsonSync(path.join(directory, 'package.json'));
     packageJson.dependencies = Object.assign({}, packageJson.dependencies, {
