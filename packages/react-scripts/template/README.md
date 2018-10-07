@@ -885,8 +885,6 @@ To add TypeScript to a Create React App project, follow these steps:
    }
    ```
 
-   _Note: `tsconfig.prod.json` is also supported._
-
 4. Copy [loaders.d.ts](./loaders.d.ts) from the template to your root directory if you don't have it.
 
 Type errors will show up in the console.

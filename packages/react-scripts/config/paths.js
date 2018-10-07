@@ -84,7 +84,6 @@ module.exports = {
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
   appTSConfig: resolveApp('tsconfig.json'),
-  appTSConfigProd: resolveApp('tsconfig.prod.json'),
   yarnLockFile: resolveApp('yarn.lock'),
   testsSetup: resolveApp('src/setupTests.js'),
   proxySetup: resolveApp('src/setupProxy.js'),
@@ -107,7 +106,6 @@ module.exports = {
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
   appTSConfig: resolveApp('tsconfig.json'),
-  appTSConfigProd: resolveApp('tsconfig.prod.json'),
   yarnLockFile: resolveApp('yarn.lock'),
   testsSetup: resolveApp('src/setupTests.js'),
   proxySetup: resolveApp('src/setupProxy.js'),
@@ -140,7 +138,6 @@ if (
     appPackageJson: resolveOwn('package.json'),
     appSrc: resolveOwn('template/src'),
     appTSConfig: resolveOwn('template/tsconfig.json'),
-    appTSConfigProd: resolveOwn('template/tsconfig.prod.json'),
     yarnLockFile: resolveOwn('template/yarn.lock'),
     testsSetup: resolveOwn('template/src/setupTests.js'),
     proxySetup: resolveOwn('template/src/setupProxy.js'),
@@ -155,5 +152,4 @@ if (
 // @remove-on-eject-end
 
 module.exports.hasTSConfig = fs.existsSync(module.exports.appTSConfig);
-module.exports.hasTSConfigProd = fs.existsSync(module.exports.appTSConfigProd);
 module.exports.moduleFileExtensions = moduleFileExtensions;

@@ -526,9 +526,7 @@ module.exports = {
       new ForkTsCheckerWebpackPlugin({
         async: false,
         checkSyntacticErrors: true,
-        tsconfig: paths.hasTSConfigProd
-          ? paths.appTSConfigProd
-          : paths.appTSConfig,
+        tsconfig: paths.appTSConfig,
         watch: paths.appSrc,
       }),
   ].filter(Boolean),
