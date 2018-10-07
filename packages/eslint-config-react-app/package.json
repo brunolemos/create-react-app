@@ -19,6 +19,7 @@
     "eslint-plugin-react": "7.x"
   },
   "dependencies": {
-    "confusing-browser-globals": "^1.0.3"
+    "confusing-browser-globals": "^1.0.3",
+    "typescript-eslint-parser": "19.0.2"
   }
 }

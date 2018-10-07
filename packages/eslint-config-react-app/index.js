@@ -46,6 +46,19 @@ module.exports = {
     },
   },
 
+  overrides: [
+    {
+      files: ['**/*.ts', '**/*.tsx'],
+      parser: 'typescript-eslint-parser',
+      rules: {
+        // no-undef is causing false positives for typescript interfaces.
+        // it is not necessary anyway, since typescript also catch this.
+        // https://github.com/eslint/typescript-eslint-parser/issues/437
+        'no-undef': 'off',
+      },
+    },
+  ],
+
   rules: {
     // http://eslint.org/docs/rules/
     'array-callback-return': 'warn',
