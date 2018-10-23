@@ -24,7 +24,6 @@ const paths = require('./paths');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin-alt');
-const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 // @remove-on-eject-begin
 const getCacheIdentifier = require('react-dev-utils/getCacheIdentifier');
 // @remove-on-eject-end
@@ -79,6 +78,13 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
   }
   return loaders;
 };
+
+let typescriptFormatter;
+try {
+  typescriptFormatter = require('react-dev-utils/typescriptFormatter');
+} catch (e) {
+  typescriptFormatter = 'codeframe';
+}
 
 // This is the development configuration.
 // It is focused on developer experience and fast rebuilds.

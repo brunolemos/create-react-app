@@ -28,7 +28,6 @@ const paths = require('./paths');
 const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin-alt');
-const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 // @remove-on-eject-begin
 const getCacheIdentifier = require('react-dev-utils/getCacheIdentifier');
 // @remove-on-eject-end
@@ -109,6 +108,13 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
   }
   return loaders;
 };
+
+let typescriptFormatter;
+try {
+  typescriptFormatter = require('react-dev-utils/typescriptFormatter');
+} catch (e) {
+  typescriptFormatter = 'codeframe';
+}
 
 // This is the production configuration.
 // It compiles slowly and is focused on producing a fast and minimal bundle.
