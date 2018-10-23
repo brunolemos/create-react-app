@@ -1,6 +1,6 @@
 {
   "name": "@brunolemos/react-app-polyfill",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Polyfills for various browsers including commonly used language features",
   "repository": "facebook/create-react-app",
   "license": "MIT",
